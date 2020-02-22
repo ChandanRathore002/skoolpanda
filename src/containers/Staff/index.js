@@ -27,7 +27,7 @@ const Staff = (props) => {
             <div className="add-school">
               <Button
                 variant="outline-secondary"
-                href="/add-schools"
+                href="/add-staff"
               >
                + Add Staff
               </Button>

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './style/app.scss';
 import AddSchool from './containers/AddSchool';
+import AddStaff from './containers/AddStaff';
 import createStore from './redux/create-store';
 import HomePage from './containers/HomePage';
 import NotFound from './components/Notfound';
@@ -28,6 +29,7 @@ class Main extends Component {
             <Route path="/schools" component={School} />
             <Route path="/staff" component={Staff} />
             <Route path="/add-schools" component={AddSchool} />
+            <Route path="/add-staff" component={AddStaff} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
