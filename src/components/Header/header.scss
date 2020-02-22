@@ -1,0 +1,123 @@
+@import '../../style/variables.scss';
+
+.demo {
+ height: 1000px;
+}
+
+.submenu-dropdown {
+  position: $relative;
+  &::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+  }
+  ul {
+    padding: 10px;
+    position: $absolute;
+    width: $full;
+    list-style: $none-value;
+    display: $none-value;
+    margin: $zero-value;
+  }
+  &:hover {
+    ul {
+      display: block !important;
+      left: -159px;
+      top: $zero-value;
+      background: $white-color;
+      border: 1px solid #ccc;
+      padding: $zero-value;
+      a {
+        color: $black-light;
+        width: $full;
+        padding: 10px 16px;
+        display: $flex;
+        &:hover {
+          text-decoration: $none-value;
+          background: $white-light;
+        }
+      }
+    }
+  }
+}
+
+.login-btn {
+  border: 1px solid $secondary-color;
+  color: $black-color !important;
+  padding: 5px 22px !important;
+  display: $flex;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out 0s;
+  &:hover {
+    background: #e7f0fa;
+  }
+}
+
+.dropdown-menu {
+  margin-top: 22px;
+  border-radius: $zero-value;
+  padding: $zero-value;
+  border-top: $none-value;
+  .dropdown-item {
+    padding: 8px 15px;
+    font-size: $basic-font-size;
+  }
+}
+
+.custom-hover {
+  flex: 1;
+}
+
+.navbar-expand-lg {
+  .navbar-nav {
+    .nav-link {
+      padding: 5px 20px;
+    }
+  }
+}
+.account-dropdown {
+  background: #aaa;
+  position: $absolute;
+  right: $zero-value;
+  top: $zero-value;
+  bottom: $zero-value;
+  display: $flex;
+  align-items: $center;
+  padding: 0 25px;
+  .nav-link {
+    color: $white-color !important;
+    font-size: 18px;
+    &::after {
+      position: $relative;
+      margin-left: 10px;
+      top: 2px;
+    }
+  }
+  .dropdown-menu {
+    left: -45px;
+    margin: 21px 0 0;
+    border: $none-value;
+    background: #aaa;
+    border-bottom-left-radius: 10px;
+    a {
+      color: $white-color;
+      padding: 15px 20px;
+      width: 193px;
+      border-bottom: 1px solid #ccc;
+      &:last-child {
+        border-bottom: $none-value;
+      }
+      &:hover {
+        background: #999;
+        &:last-child {
+          border-bottom-left-radius: 10px;
+        }
+      }
+    }
+  }
+}

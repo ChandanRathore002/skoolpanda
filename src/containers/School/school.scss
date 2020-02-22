@@ -1,0 +1,21 @@
+@import '../../style/variables.scss';
+
+.school-table {
+  tbody {
+    tr {
+      .w-5-per {
+        width: 5%;
+        text-align: $center;
+      }
+      .w-25-per {
+        width: 30%;
+      }
+      .w-40-per {
+        width: 45%;
+      }
+      .w-30-per {
+        width: 20%;
+      }
+    }
+  }
+}

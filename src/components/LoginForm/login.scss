@@ -1,0 +1,50 @@
+@import '../../style/variables.scss';
+
+.login-section {
+  background: url('../../images/login-bg.jpg') no-repeat center / cover;
+  height: $full;
+  position: $relative;
+  z-index: $zero-value;
+  display: $flex;
+  align-items: $center;
+  &::before {
+    position: $absolute;
+    content: '';
+    height: $full;
+    background: rgba(0, 0, 0, 0.8);
+    top: $zero-value;
+    width: $full;
+    z-index: -1;
+  }
+}
+
+.login-form {
+  width: $full;
+  display: $flex;
+  justify-content: $center;
+  form {
+    align-items: $center;
+    max-width: 420px;
+    width: $full;
+    display: $flex;
+    flex-direction: $column;
+    background: $white-color;
+    border-radius: 10px;
+    padding: 20px;
+    .form-group {
+      width: $full;
+    }
+    .btn {
+      width: $full;
+      margin-top: 8px;
+    }
+  }
+}
+
+.logo-col {
+  width: 140px;
+  margin-bottom: 16px;
+  img {
+    width: $full;
+  }
+}

@@ -1,0 +1,117 @@
+@import './variables.scss';
+
+html,
+body,
+#root {
+  height: $full;
+}
+
+body {
+ font-family: $font-family; 
+}
+
+h2 {
+  text-transform: uppercase;
+  margin: $zero-value;
+  color: $black-light;
+}
+
+.space-row {
+  margin-top: 85px;
+}
+
+.form-label {
+  font-size: $basic-font-size;
+  margin-bottom: 4px;
+}
+
+.form-group {
+  display: $flex;
+  flex-direction: $column;
+}
+
+.form-control {
+  font-size: $basic-font-size;
+  height: calc(1.5em + .75rem + 12px);
+}
+
+.form-control::-moz-placeholder {
+  color: #ccc;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #ccc;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+.form-control::placeholder {
+  color: #ccc;
+}
+
+.btn {
+  padding: 9px 20px;
+}
+
+.error-message {
+  font-size: 13px;
+  color: $red;
+}
+
+.has-error {
+  border-color: $red;
+}
+
+.table {
+  td {
+    font-size: $basic-font-size;
+  }
+  .btn {
+    padding: 4px 20px;
+  }
+}
+
+.toast {
+  position: fixed;
+  z-index: 9999;
+  left: $zero-value;
+  right: $zero-value;
+  margin: 0 auto;
+  top: $zero-value;
+  width: $full;
+  background: rgba(0, 0, 0, 0.7);
+  max-width: $full;
+  bottom: $zero-value;
+  border: $none-value;
+  display: $flex !important;
+  justify-content: $center;
+  align-items: $center;
+  height: $full;
+  .toast-container {
+    max-width: 320px;
+    display: $flex;
+    width: $full;
+    flex-direction: $column;
+    background: $white-color;
+    border-radius: 4px;
+    .close {
+      display: $none-value;
+    }
+  }
+  .toast-header {
+    justify-content: $center;
+    color: $black-light;
+    font-weight: $font-weight-500;
+    font-size: $medium-font-size;
+    padding: 12px 10px;
+    background: transparent;
+    text-transform: uppercase;
+  }
+  .toast-body {
+    text-align: $center;
+    padding: 20px 10px;
+    font-size: 16px;
+  }
+}
