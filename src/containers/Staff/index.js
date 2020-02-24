@@ -8,14 +8,14 @@ import './school.scss';
 const Staff = (props) => {
   const [staffs, setStaff] = useState(props.staffList);
 
-  // useEffect(() => {
-  //   const { dispatch } = props;
-  //   dispatch(fetchStaffList())
-  //   .then(response => {
-  //     console.log(response, 'RESPONSE');
-  //     setStaff(response);
-  //   });
-  // }, []);
+  useEffect(() => {
+    const { dispatch } = props;
+    dispatch(fetchStaffList())
+    .then(response => {
+      console.log(response, 'RESPONSE');
+      setStaff(response);
+    });
+  }, []);
  
   return (
     <Fragment>
@@ -46,10 +46,10 @@ const Staff = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {/* {staffs.map((staff, index) => {
-                  // const schoolAddress = school.postal_address ? 
-                  //   school.postal_address.formatted_address : '';
-                  return ( */}
+                {staffs.map((staff, index) => {
+                  const schoolAddress = staff.postal_address ? 
+                    staff.postal_address.formatted_address : '';
+                  return (
                     <tr>
                       <td className="align-middle w-5-per">1</td>
                       <td className="align-middle w-25-per">dffd</td>
@@ -61,8 +61,8 @@ const Staff = (props) => {
                         <Button variant="outline-danger">Delete</Button>
                       </td>
                     </tr>
-                  {/* );
-                })} */}
+                  );
+                })}
               </tbody>
             </Table>
           </div>
@@ -72,12 +72,10 @@ const Staff = (props) => {
   );
 };
 
-// function mapStateToProps(state) {
-//   return {
-//     staffList: state.staffList.staffList,
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    staffList: state.staffList.staffList,
+  };
+}
 
-// export default connect(mapStateToProps)(Staff);
-
-export default Staff;
+export default connect(mapStateToProps)(Staff);

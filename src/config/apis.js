@@ -1,4 +1,5 @@
 import axios from "axios";
+import { tokenKey } from './constants';
 
 export const apiURL = "https://api.skoolpanda.com/api/";
 
@@ -11,12 +12,41 @@ export const apiReq = axios.create({
   }
 });
 
-/*const requestHandler = request => {
-  console.log("REQUEST: ", request);
+const requestHandler = request => {
+  const token = window.localStorage.getItem(tokenKey);
+
+  if (token) {
+    const {headers} = request;
+    headers['Cookie'] = token;
+    request.headers = headers;
+  }
+
   return request;
 };
 
-apiReq.interceptors.request.use(request => requestHandler(request));*/
+const responseHandler = response => {
+  const {headers} = response;
+  const cookie = headers['set-cookie'];
+console.log('RESPONSE HEADERS: ', headers);
+  if (!!cookie && Array.isArray(cookie)) {
+    if (cookie.length) {
+      if (cookie.length > 0) {
+        const aCookie = cookie[0];
+        const aCookieArr = aCookie.split(';');
+
+        if (aCookieArr.length > 0) {
+          const cookieToken = aCookieArr[0];
+          window.localStorage.setItem(tokenKey, cookieToken);
+        }
+      }
+    }
+  }
+
+  return response;
+};
+
+apiReq.interceptors.request.use(request => requestHandler(request));
+apiReq.interceptors.response.use(response => responseHandler(response));
 
 export const schoolList = {
   childPlaces: "master/child_places",
@@ -53,5 +83,13 @@ export const schools = {
   getSections: (partyId) => `/schools/classes/${partyId}/sections`,
   getCountries: 'master/countries',
   getCountryStates: 'master/child_places/'
-  
+};
+
+export const staffs = {
+  add: "/staffs/register_staff",
+  get: "/staffs",
+  getClasses: "/staffs/classes",
+  getSections: (partyId) => `/staffs/classes/${partyId}/sections`,
+  getCountries: 'master/countries',
+  getCountryStates: 'master/child_places/'
 };

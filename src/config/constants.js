@@ -34,3 +34,5 @@ export const states = [{"code": "AN","name": "Andaman and Nicobar Islands"},
   {"code": "UK","name": "Uttarakhand"},
   {"code": "UP","name": "Uttar Pradesh"},
   {"code": "WB","name": "West Bengal"}];
+
+  export const tokenKey = "@skool-panda-token";

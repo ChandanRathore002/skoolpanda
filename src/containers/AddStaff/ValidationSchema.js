@@ -3,8 +3,6 @@ import * as Yup from 'yup';
 export const validationSchema = Yup.object().shape({
   address: Yup.string()
     .required('Please enter a address'),
-  schoolname: Yup.string()
-    .required('Please enter a school name'),
   country: Yup.string()
     .required('Please enter a country'),
   state: Yup.string()

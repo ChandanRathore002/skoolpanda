@@ -174,7 +174,9 @@ export const authenticate = (username, password) => {
 
         apiReq
           .post(auth.auth, { user_login: {login: username, password }})
-          .then(({ data }) => {
+          .then((response) => {
+            console.log('AUTH RESPONSE: ', response);
+            const {data} = response;
             dispatch({ type: AUTH_SUCCESS, user: {}, isUserVerified: true });
             resolve(data);
           })

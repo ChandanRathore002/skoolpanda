@@ -7,7 +7,7 @@ import Input from '../../components/Input';
 import Header from '../../components/Header';
 import Error from './Error';
 import { validationSchema } from './ValidationSchema';
-import { addSchool, getCountries, getCountryStates } from '../../redux/schools';
+import { addStaff, getCountries, getCountryStates } from '../../redux/staffs';
 
 import './add-school.scss';
 
@@ -31,8 +31,7 @@ const AddStaff = (props) => {
   const handleSubmit = (values, {setSubmitting, resetForm}) => {
     setSubmitting(true);
     const payload = {
-      sandbox: 1,
-      school_name: values.schoolname
+      role_type_id: 1,
     };
     payload.person = {};
     payload.person.fname = values.firstname;
@@ -59,13 +58,14 @@ const AddStaff = (props) => {
     payload.telecom_number.area_code = values.areacode;
     payload.telecom_number.contact_number = values.contact;
 
-    dispatch(addSchool(payload))
+    dispatch(addStaff(payload))
     .then(response => {
       const { apiresponse } = response;
+      console.log(apiresponse, 'Updated');
       if (apiresponse && apiresponse.type === "OK") {
         setToastMsg(apiresponse.message);
         setShowToast(true);
-        setTimeout(() => { history.push("/schools"); }, 3000);
+        setTimeout(() => { history.push("/staffs"); }, 3000);
         return;
       }
 
@@ -73,7 +73,7 @@ const AddStaff = (props) => {
       setShowToast(true);
     })
     .catch(error => {
-      console.log("Add School error: ", error);
+      console.log("Add Staff error: ", error);
       setToastMsg('Duh ! We got an error. Please report to admin.');
       setShowToast(true);
     });
@@ -90,7 +90,6 @@ const AddStaff = (props) => {
             <div className="add-school-form">
               <Formik
                 initialValues={{
-                  schoolname: '',
                   address: '',
                   country: selectedCountry,
                   state: '',
@@ -126,25 +125,6 @@ const AddStaff = (props) => {
                         <h2 className="mb-5">Add Staff</h2>
                       </Col>
                       <div className="d-flex flex-wrap">
-                        <Col xs="12" lg="4">
-                          <Form.Group controlId="formBasicEmail">
-                            <div className="form-col w-100 col-12 p-0">
-                              <Form.Label>School Name</Form.Label>
-                                <Input
-                                  id="schoolname"
-                                  type="schoolname"
-                                  name="schoolname"
-                                  placeholder="Enter School Name"
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  value={values.schoolname}
-                                  className={touched.schoolname && errors.schoolname ? 'form-control has-error' : 'form-control'}
-                                />
-                            </div>
-                            <Error touched={touched.schoolname} message={errors.schoolname} />
-                          </Form.Group>
-                        </Col>
-
                         <Col xs="12" lg="4">
                           <Form.Group controlId="formBasicPassword">
                             <div className="form-col w-100 col-12 p-0">
@@ -529,11 +509,11 @@ const AddStaff = (props) => {
 
 function mapStateToProps(state) {
   return {
-    error: state.schools.error,
-    isLoading: state.schools.isLoading,
-    school: state.schools.school,
-    countriesList: state.schools.countriesList,
-    statesList: state.schools.statesList
+    error: state.staffs.error,
+    isLoading: state.staffs.isLoading,
+    staff: state.staffs.staff,
+    countriesList: state.staffs.countriesList,
+    statesList: state.staffs.statesList
   };
 }
 
