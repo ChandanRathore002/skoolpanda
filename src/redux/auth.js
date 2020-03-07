@@ -269,3 +269,24 @@ export const verifyResetPassword = otp => {
     })
   );
 };
+
+export const logOut = () => {
+  return (dispatch => new Promise((resolve, reject) => {
+    try {      
+      apiReq
+        .get(auth.logout)
+        .then(({ data }) => {
+          console.log("data is ", data);
+          // dispatch({ type: RESET_PASSWORD_VERIFY_OTP, otpVerified: true });
+          resolve(data);
+        })
+        .catch(error => {
+          handleErr(error, dispatch);
+          reject(error);
+        });
+    } catch (error) {
+      handleErr(error, dispatch);
+    }
+  })
+);
+}

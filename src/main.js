@@ -13,6 +13,7 @@ import NotFound from './components/Notfound';
 import School from './containers/School';
 import Staff from './containers/Staff';
 import Login from './containers/Login';
+import LogOut from './components/LogOut';
 
 const history = createMemoryHistory();
 
@@ -30,6 +31,7 @@ class Main extends Component {
             <Route path="/staff" component={Staff} />
             <Route path="/add-schools" component={AddSchool} />
             <Route path="/add-staff" component={AddStaff} />
+            <Route path="/logout" component={LogOut} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { tokenKey } from './constants';
 
-export const apiURL = "https://api.skoolpanda.com/api/";
+export const apiURL = "http://localhost:3000/api";
 
 export const apiReq = axios.create({
   baseURL: apiURL,
   timeout: 4000,
+  withCredentials: true,
   headers: {
     "Content-type": "application/json",
     "Accept": "application/json"
@@ -45,8 +46,8 @@ console.log('RESPONSE HEADERS: ', headers);
   return response;
 };
 
-apiReq.interceptors.request.use(request => requestHandler(request));
-apiReq.interceptors.response.use(response => responseHandler(response));
+// apiReq.interceptors.request.use(request => requestHandler(request));
+// apiReq.interceptors.response.use(response => responseHandler(response));
 
 export const schoolList = {
   childPlaces: "master/child_places",
@@ -73,7 +74,8 @@ export const auth = {
   auth: "auth/verify_login",
   register: "signup/register_user", //POST
   reset: "auth/reset_password",
-  usernameCheck: "user/username_available"
+  usernameCheck: "user/username_available",
+  logout: "auth/logout"
 };
 
 export const schools = {

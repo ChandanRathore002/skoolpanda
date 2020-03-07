@@ -74,7 +74,7 @@ export const fetchStaffList = () => {
         dispatch({ type: STAFF_LIST_LOADING });
 
         apiReq
-          .get(staffList.staffs)
+          .post(staffList.staffs)
           .then(response => {
             const { data } = response;
             dispatch({ type: STAFF_LIST, staffList: data.records });

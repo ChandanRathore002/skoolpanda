@@ -41,6 +41,7 @@ const School = (props) => {
                 <tr>
                   <th>#</th>
                   <th>School Name</th>
+                  <th>partyID</th>
                   <th>Schoo Address</th>
                   <th>Action</th>
                 </tr>
@@ -53,7 +54,8 @@ const School = (props) => {
                     <tr key={index}>
                       <td className="align-middle w-5-per">{index + 1}</td>
                       <td className="align-middle w-25-per">{school.group_name}</td>
-                      <td className="align-middle w-40-per">
+                      <td className="align-middle w-5-per">{school.party_id}</td>
+                      <td className="align-middle w-25-per">
                         {schoolAddress}
                       </td>
                       <td className="align-middle w-30-per">

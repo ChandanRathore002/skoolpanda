@@ -121,3 +121,25 @@
     }
   }
 }
+
+.fixed-top {
+  .navbar-collapse {
+    max-width: 75%;
+  }
+}
+
+.version-col {
+  span {
+    position: relative;
+    &::after {
+      background: rgba(0,0,0,1);
+      height: 1px;
+      width: $full;
+      content: '';
+      bottom: -5px;
+      left: $zero-value;
+      right: $zero-value;
+      position: absolute;
+    }
+  }
+}
