@@ -50,11 +50,11 @@ const Staff = (props) => {
                   const schoolAddress = staff.postal_address ? 
                     staff.postal_address.formatted_address : '';
                   return (
-                    <tr>
-                      <td className="align-middle w-5-per">1</td>
-                      <td className="align-middle w-25-per">dffd</td>
+                    <tr key={index}>
+                      <td className="align-middle w-5-per">{index + 1}</td>
+                      <td className="align-middle w-25-per">{staff.fname} {staff.lname}</td>
                       <td className="align-middle w-40-per">
-                        dfdf
+                        {schoolAddress}
                       </td>
                       <td className="align-middle w-30-per">
                         <Button variant="outline-success mr-3">Edit</Button>

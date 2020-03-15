@@ -59,9 +59,12 @@ const School = (props) => {
     payload.telecom_number.area_code = values.areacode;
     payload.telecom_number.contact_number = values.contact;
 
+    console.log(payload, 'PAYLOAD');
+
     dispatch(addSchool(payload))
     .then(response => {
       const { apiresponse } = response;
+      console.log(apiresponse, 'Updated');
       if (apiresponse && apiresponse.type === "OK") {
         setToastMsg(apiresponse.message);
         setShowToast(true);

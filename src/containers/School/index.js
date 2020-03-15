@@ -10,9 +10,9 @@ const School = (props) => {
 
   useEffect(() => {
     const { dispatch } = props;
-
     dispatch(fetchSchoolList())
     .then(response => {
+      console.log(response, 'RESPONSE');
       setSchools(response);
     });
   }, []);
