@@ -31,13 +31,10 @@ const LoginForm = (props) => {
 
     dispatch(authenticate(values.username, values.password))
     .then(({apiresponse: response}) => {
-      console.log("LOGIN RESPONSE: ", response);
       const {
         message,
         type
       } = response;
-
-      console.log(type, response.message);
 
       if (type === "ERROR") {
         console.log("INSINDE IF :");

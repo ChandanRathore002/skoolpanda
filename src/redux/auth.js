@@ -175,7 +175,6 @@ export const authenticate = (username, password) => {
         apiReq
           .post(auth.auth, { user_login: {login: username, password }})
           .then((response) => {
-            console.log('AUTH RESPONSE: ', response);
             const {data} = response;
             dispatch({ type: AUTH_SUCCESS, user: {}, isUserVerified: true });
             resolve(data);
@@ -276,7 +275,6 @@ export const logOut = () => {
       apiReq
         .get(auth.logout)
         .then(({ data }) => {
-          console.log("data is ", data);
           // dispatch({ type: RESET_PASSWORD_VERIFY_OTP, otpVerified: true });
           resolve(data);
         })

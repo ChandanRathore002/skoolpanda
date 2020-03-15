@@ -20,7 +20,8 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-5 custom-hover">
             <Nav.Link href="/schools">Schools</Nav.Link>
-            <Nav.Link href="/staff">Staff</Nav.Link>
+            <Nav.Link href="/staff">Staffs</Nav.Link>
+            <Nav.Link href="/student/leave-apply">Students</Nav.Link>
             <Nav.Link href="/people" className="">People</Nav.Link>
             <NavDropdown title="Masters" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/role">Roles</NavDropdown.Item>

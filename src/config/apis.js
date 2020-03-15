@@ -1,5 +1,5 @@
 import axios from "axios";
-import { tokenKey } from './constants';
+// import { tokenKey } from './constants';
 
 export const apiURL = "http://localhost:3000/api";
 
@@ -13,38 +13,38 @@ export const apiReq = axios.create({
   }
 });
 
-const requestHandler = request => {
-  const token = window.localStorage.getItem(tokenKey);
+// const requestHandler = request => {
+//   const token = window.localStorage.getItem(tokenKey);
 
-  if (token) {
-    const {headers} = request;
-    headers['Cookie'] = token;
-    request.headers = headers;
-  }
+//   if (token) {
+//     const {headers} = request;
+//     headers['Cookie'] = token;
+//     request.headers = headers;
+//   }
 
-  return request;
-};
+//   return request;
+// };
 
-const responseHandler = response => {
-  const {headers} = response;
-  const cookie = headers['set-cookie'];
-console.log('RESPONSE HEADERS: ', headers);
-  if (!!cookie && Array.isArray(cookie)) {
-    if (cookie.length) {
-      if (cookie.length > 0) {
-        const aCookie = cookie[0];
-        const aCookieArr = aCookie.split(';');
+// const responseHandler = response => {
+//   const {headers} = response;
+//   const cookie = headers['set-cookie'];
+// console.log('RESPONSE HEADERS: ', headers);
+//   if (!!cookie && Array.isArray(cookie)) {
+//     if (cookie.length) {
+//       if (cookie.length > 0) {
+//         const aCookie = cookie[0];
+//         const aCookieArr = aCookie.split(';');
 
-        if (aCookieArr.length > 0) {
-          const cookieToken = aCookieArr[0];
-          window.localStorage.setItem(tokenKey, cookieToken);
-        }
-      }
-    }
-  }
+//         if (aCookieArr.length > 0) {
+//           const cookieToken = aCookieArr[0];
+//           window.localStorage.setItem(tokenKey, cookieToken);
+//         }
+//       }
+//     }
+//   }
 
-  return response;
-};
+//   return response;
+// };
 
 // apiReq.interceptors.request.use(request => requestHandler(request));
 // apiReq.interceptors.response.use(response => responseHandler(response));

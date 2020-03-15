@@ -21,7 +21,7 @@ const AddStaff = (props) => {
 
   useEffect(()=>{
     dispatch(getCountries());    
-  }, []);
+  }, [dispatch]);
 
   const changeCountry = (event) => {
     setSelectedCountry(event.target.value);
@@ -31,15 +31,22 @@ const AddStaff = (props) => {
   const handleSubmit = (values, {setSubmitting, resetForm}) => {
     setSubmitting(true);
     const payload = {
-      role_type_id: 1,
+      role_type_id: "STAFF",
     };
     payload.person = {};
     payload.person.fname = values.firstname;
-    payload.person.mname = values.middlename;
     payload.person.lname = values.lastname;
     payload.person.designation = values.designation;
     payload.person.dob = values.dob;
     payload.person.gender = values.gender;
+
+    if (!!values.middlename && values.middlename.trim().length > 0) {
+      payload.person.mname = values.middlename;
+    }
+
+    if (!!values.emails && values.emails.trim().length > 0) {
+      payload.emails = [values.emails];
+    }
 
     payload.user_login = {};
     payload.user_login.login = values.login;
@@ -58,6 +65,8 @@ const AddStaff = (props) => {
     payload.telecom_number.area_code = values.areacode;
     payload.telecom_number.contact_number = values.contact;
 
+    console.log(payload, 'PAYLOAD');
+
     dispatch(addStaff(payload))
     .then(response => {
       const { apiresponse } = response;
@@ -65,7 +74,7 @@ const AddStaff = (props) => {
       if (apiresponse && apiresponse.type === "OK") {
         setToastMsg(apiresponse.message);
         setShowToast(true);
-        setTimeout(() => { history.push("/staffs"); }, 3000);
+        setTimeout(() => { history.push("/staff"); }, 3000);
         return;
       }
 
@@ -256,6 +265,8 @@ const AddStaff = (props) => {
                               <Form.Label>Middle Name</Form.Label>
                                 <Input
                                   type="text"
+                                  id="middlename"
+                                  name="middlename"
                                   placeholder="Enter Middle Name"
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -273,7 +284,8 @@ const AddStaff = (props) => {
                               <Input
                                 type="lastname"
                                 id="lastname"
-                                disabled    name="lastname"
+                                disabled
+                                name="lastname"
                                 placeholder="Enter Last Name"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -416,6 +428,25 @@ const AddStaff = (props) => {
                       <h2 className="mb-5">User Login</h2>
                     </Col>
                     <div className="d-flex flex-wrap">
+                    <Col xs="12" lg="4">
+                        <Form.Group controlId="formBasicPassword">
+                          <div className="form-col w-100 col-12 p-0">
+                            <Form.Label>Email</Form.Label>
+                            <Input
+                              type="text"
+                              id="emails"
+                              name="emails"
+                              placeholder="Enter Email"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.emails}
+                              className={touched.emails && errors.emails ? 'form-control has-error' : 'form-control'}
+                            />
+                          </div>
+                          <Error touched={touched.emails} message={errors.emails} />
+                        </Form.Group>
+                      </Col>
+
                       <Col xs="12" lg="4">
                         <Form.Group controlId="formBasicPassword">
                           <div className="form-col w-100 col-12 p-0">

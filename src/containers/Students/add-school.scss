@@ -1,0 +1,42 @@
+@import '../../style/variables.scss';
+
+.add-school-form {
+  width: $full;
+  margin: 0 auto;
+  .form-group {
+    align-items: $center;
+    margin-bottom: 28px;
+  }
+  .error-message {
+    position: $absolute;
+    right: 14px;
+    bottom: $zero-value;
+  }
+  h2 {
+    font-size: 24px;
+  }
+}
+
+.submit-col {
+  .btn-primary {
+    max-width: 200px;
+    width: $full;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+}
+
+.add-form-box {
+  box-shadow: 8px 8px 14px rgba(190, 197, 214, 0.2), -8px -8px 14px rgba(190, 197, 214, 0.2);
+  padding: 26px 10px;
+  border-top: 4px solid #007bff;
+  .form-label {
+    font-weight: $font-weight-500;
+  }
+}
+
+textarea.form-control {
+  resize: none;
+  height: 45px;
+}
