@@ -1,4 +1,4 @@
-import { apiReq, auth, otpApis } from "../config/apis";
+import  { apiReq, auth, otpApis } from "../config/apis";
 import {
   AUTH_ERROR, AUTH_LOADING, AUTH_SUCCESS,
   RESET_PASSWORD_SEND_OTP, RESET_PASSWORD_VERIFY_OTP,
@@ -173,13 +173,14 @@ export const authenticate = (username, password) => {
         dispatch({ type: AUTH_LOADING });
 
         apiReq
-          .post(auth.auth, { user_login: {login: username, password }})
+          .post(auth.auth, { user_login: {login: username, password,  repeat_password: password }})
           .then((response) => {
             const {data} = response;
             dispatch({ type: AUTH_SUCCESS, user: {}, isUserVerified: true });
             resolve(data);
           })
           .catch(error => {
+            console.log(error);
             handleErr(error, dispatch);
             reject(error);
           });

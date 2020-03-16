@@ -1,4 +1,4 @@
-import { apiReq, staffs } from "../config/apis";
+import  { apiReq, staffs } from "../config/apis";
 import {
   STAFF_LIST, STAFF_ERROR,
   STAFF_LOADING,
@@ -89,6 +89,7 @@ const handleCatch = (error, dispatch) => {
 export const addStaff = (payload) => {
   return ((dispatch, getState) => new Promise((resolve, reject) => {
     try {
+      console.log(payload);
       dispatch({ type: STAFF_LOADING });
     apiReq
       .post(staffs.add, payload)

@@ -1,53 +1,55 @@
-import axios from "axios";
-// import { tokenKey } from './constants';
+import  { create } from "axios";
+import { tokenKey } from './constants';
 
-export const apiURL = "http://localhost:3000/api";
+export const apiURL = "https://api.skoolpanda.com/api";
 
-export const apiReq = axios.create({
+export const apiReq = create({
   baseURL: apiURL,
-  timeout: 4000,
-  withCredentials: true,
   headers: {
     "Content-type": "application/json",
     "Accept": "application/json"
   }
 });
 
-// const requestHandler = request => {
-//   const token = window.localStorage.getItem(tokenKey);
+const handleErrors = (error) => {
+  const { response: { status = "" } = {} } = error || {};
+  if (status === 401) {
+    // window.localStorage.clear();
+    // window.location.replace('/');
+  }
 
-//   if (token) {
-//     const {headers} = request;
-//     headers['Cookie'] = token;
-//     request.headers = headers;
-//   }
+  return Promise.reject(error);
+};
 
-//   return request;
-// };
 
-// const responseHandler = response => {
-//   const {headers} = response;
-//   const cookie = headers['set-cookie'];
-// console.log('RESPONSE HEADERS: ', headers);
-//   if (!!cookie && Array.isArray(cookie)) {
-//     if (cookie.length) {
-//       if (cookie.length > 0) {
-//         const aCookie = cookie[0];
-//         const aCookieArr = aCookie.split(';');
-
-//         if (aCookieArr.length > 0) {
-//           const cookieToken = aCookieArr[0];
-//           window.localStorage.setItem(tokenKey, cookieToken);
-//         }
-//       }
-//     }
-//   }
-
-//   return response;
-// };
-
-// apiReq.interceptors.request.use(request => requestHandler(request));
-// apiReq.interceptors.response.use(response => responseHandler(response));
+apiReq.interceptors.response.use(
+  (response) => response,
+  (error) => handleErrors(error),
+);
+apiReq.interceptors.request.use(
+  (config) => {
+    const { headers } = config;
+    const cookie = headers['set-cookie'];
+    const request = config;
+    console.log('RESPONSE HEADERS: ', cookie);
+    if (!!cookie && Array.isArray(cookie)) {
+      if (cookie.length) {
+        if (cookie.length > 0) {
+          const aCookie = cookie[0];
+          const aCookieArr = aCookie.split(';');
+          if (aCookieArr.length > 0) {
+            const cookieToken = aCookieArr[0];
+            window.localStorage.setItem(tokenKey, cookieToken);
+          }
+        }
+      }
+    }
+    return request;
+  },
+  
+  (error) => Promise.reject(error),
+);
+//apiReq.interceptors.response.use(response => responseHandler(response));
 
 export const schoolList = {
   childPlaces: "master/child_places",
